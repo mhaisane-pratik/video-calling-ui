@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  background: #0f172a;
+  color: white;
+  font-family: Arial;
+}
+
+input, button {
+  padding: 8px;
+  margin: 6px 0;
+}
+
+.center {
+  max-width: 400px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  padding: 30px;
+}
+
+.meeting {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.video {
+  background: #1e293b;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat, .whiteboard {
+  background: #020617;
+  padding: 10px;
+}
+
+.canvas {
+  background: white;
+  color: black;
+  height: 150px;
+}
+
+.controls {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.danger {
+  background: red;
+  color: white;
+}
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background-color: #0f172a;
+}
