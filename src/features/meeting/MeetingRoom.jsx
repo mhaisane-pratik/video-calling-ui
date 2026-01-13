@@ -11,28 +11,23 @@ import RecordingPanel from "./RecordingPanel";
 
 export default function MeetingRoom() {
   const [panel, setPanel] = useState("participants");
-  // participants | chat | whiteboard | engagement | recording
-
   const [mic, setMic] = useState(true);
   const [cam, setCam] = useState(true);
 
-  // ✅ SHARED MEDIA STREAM (camera / screen)
   const streamRef = useRef(null);
 
   return (
-    <Box sx={{ display: "flex", height: "100vh", bgcolor: "#0f172a" }}>
-      {/* VIDEO AREA */}
+    <Box sx={{ display: "flex", height: "100vh", bgcolor: "background.default" }}>
       <Box sx={{ flex: 3, p: 1 }}>
         <VideoGrid camOn={cam} streamRef={streamRef} />
       </Box>
 
-      {/* RIGHT SIDE PANEL */}
       <Box
         sx={{
           width: 360,
-          bgcolor: "#020617",
-          borderLeft: "1px solid #1e293b",
-          overflowY: "auto",
+          bgcolor: "background.paper",
+          borderLeft: "1px solid",
+          borderColor: "divider",
         }}
       >
         {panel === "participants" && <ParticipantList />}
@@ -42,14 +37,13 @@ export default function MeetingRoom() {
         {panel === "recording" && <RecordingPanel streamRef={streamRef} />}
       </Box>
 
-      {/* CONTROL BAR */}
       <ControlBar
         micOn={mic}
         camOn={cam}
         toggleMic={() => setMic((p) => !p)}
         toggleCam={() => setCam((p) => !p)}
         setPanel={setPanel}
-        streamRef={streamRef}   // ✅ REQUIRED FOR SCREEN SHARE
+        streamRef={streamRef}
       />
     </Box>
   );

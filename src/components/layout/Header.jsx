@@ -1,4 +1,5 @@
 import { Box, TextField, IconButton, Avatar } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -7,7 +8,7 @@ import { toggleTheme } from "../../store/theme.slice";
 import NotificationBell from "../common/NotificationBell";
 import NotificationsPanel from "../../features/dashboard/NotificationsPanel";
 
-export default function Header() {
+export default function Header({ onMenuClick }) {
   const dispatch = useDispatch();
   const [showNotifications, setShowNotifications] = useState(false);
 
@@ -19,10 +20,17 @@ export default function Header() {
         alignItems: "center",
         px: 2,
         gap: 2,
-        bgcolor: "#020617",
-        borderBottom: "1px solid #1e293b",
+        bgcolor: "background.paper",
+        borderBottom: "1px solid",
+        borderColor: "divider",
+        position: "relative",
       }}
     >
+      {/* ☰ HAMBURGER */}
+      <IconButton onClick={onMenuClick}>
+        <MenuIcon />
+      </IconButton>
+
       {/* SEARCH */}
       <TextField
         size="small"
@@ -33,16 +41,16 @@ export default function Header() {
       {/* NOTIFICATIONS */}
       <NotificationBell
         count={3}
-        onClick={() => setShowNotifications((prev) => !prev)}
+        onClick={() => setShowNotifications((p) => !p)}
       />
 
-      {/* DARK MODE */}
+      {/* THEME TOGGLE */}
       <IconButton onClick={() => dispatch(toggleTheme())}>
         <DarkModeIcon />
       </IconButton>
 
-      {/* USER AVATAR */}
-      <Avatar sx={{ bgcolor: "#2563eb" }}>VT</Avatar>
+      {/* USER */}
+      <Avatar sx={{ bgcolor: "primary.main" }}>VT</Avatar>
 
       {/* NOTIFICATIONS PANEL */}
       {showNotifications && (
@@ -52,7 +60,10 @@ export default function Header() {
             top: 64,
             right: 16,
             width: 300,
-            zIndex: 1000,
+            bgcolor: "background.paper",
+            boxShadow: 3,
+            borderRadius: 1,
+            zIndex: 1200,
           }}
         >
           <NotificationsPanel />

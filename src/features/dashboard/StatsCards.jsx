@@ -1,160 +1,118 @@
-import { Grid, Box, Paper } from "@mui/material";
-import StatCard from "../../components/common/StatCard";
 
-export default function StatsCards() {
+
+import React from 'react';
+import { Grid, Card, Typography, Box } from '@mui/material';
+import {
+  VideoCall,
+  People,
+  AccessTime,
+  TrendingUp
+} from '@mui/icons-material';
+
+const StatsCards = ({ themeMode }) => {
+  const stats = [
+    {
+      title: 'Total Meetings',
+      value: '128',
+      icon: <VideoCall />,
+      color: themeMode === 'light' ? '#2196F3' : '#BB86FC',
+      bgColor: themeMode === 'light' ? 'rgba(33, 150, 243, 0.1)' : 'rgba(187, 134, 252, 0.1)'
+    },
+    {
+      title: 'Active Users',
+      value: '42',
+      icon: <People />,
+      color: themeMode === 'light' ? '#4CAF50' : '#81C784',
+      bgColor: themeMode === 'light' ? 'rgba(76, 175, 80, 0.1)' : 'rgba(76, 175, 80, 0.2)'
+    },
+    {
+      title: 'Recorded Hours',
+      value: '96h',
+      icon: <AccessTime />,
+      color: themeMode === 'light' ? '#FF9800' : '#FFB74D',
+      bgColor: themeMode === 'light' ? 'rgba(255, 152, 0, 0.1)' : 'rgba(255, 152, 0, 0.2)'
+    },
+    {
+      title: 'Engagement Avg',
+      value: '78%',
+      icon: <TrendingUp />,
+      color: themeMode === 'light' ? '#E91E63' : '#F48FB1',
+      bgColor: themeMode === 'light' ? 'rgba(233, 30, 99, 0.1)' : 'rgba(233, 30, 99, 0.2)'
+    }
+  ];
+
   return (
-    <Grid 
-      container 
-      spacing={2} 
-      sx={{ 
-        mb: 3,
-        position: "relative",
-        "&::before": {
-          content: '""',
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "1px",
-          background: "linear-gradient(90deg, transparent, #334155, transparent)",
-        }
-      }}
-    >
-      <Grid item xs={12} md={3}>
-        <Paper
-          elevation={0}
-          sx={{
-            position: "relative",
-            overflow: "hidden",
-            "&::before": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: "3px",
-              background: "linear-gradient(90deg, #3b82f6, #8b5cf6)",
-            },
-            "&:hover": {
-              transform: "translateY(-4px)",
-              transition: "transform 0.3s ease",
-              boxShadow: "0 10px 25px rgba(59, 130, 246, 0.15)"
-            }
-          }}
-        >
-          <StatCard 
-            title="Total Meetings" 
-            value="128"
+    <Grid container spacing={3} sx={{ mb: 4 }}>
+      {stats.map((stat, index) => (
+        <Grid item xs={12} sm={6} md={3} key={index}>
+          <Card
             sx={{
-              bgcolor: "rgba(15, 23, 42, 0.7)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255, 255, 255, 0.05)",
+              p: 3,
+              borderRadius: 3,
+              bgcolor: 'background.paper',
+              border: '1px solid',
+              borderColor: themeMode === 'light' 
+                ? 'rgba(0, 0, 0, 0.08)' 
+                : 'rgba(255, 255, 255, 0.08)',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                transform: 'translateY(-4px)',
+                boxShadow: themeMode === 'light' 
+                  ? '0 8px 16px rgba(0, 0, 0, 0.1)'
+                  : '0 8px 16px rgba(0, 0, 0, 0.3)',
+              }
             }}
-          />
-        </Paper>
-      </Grid>
-      
-      <Grid item xs={12} md={3}>
-        <Paper
-          elevation={0}
-          sx={{
-            position: "relative",
-            overflow: "hidden",
-            "&::before": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: "3px",
-              background: "linear-gradient(90deg, #10b981, #34d399)",
-            },
-            "&:hover": {
-              transform: "translateY(-4px)",
-              transition: "transform 0.3s ease",
-              boxShadow: "0 10px 25px rgba(16, 185, 129, 0.15)"
-            }
-          }}
-        >
-          <StatCard 
-            title="Active Users" 
-            value="42"
-            sx={{
-              bgcolor: "rgba(15, 23, 42, 0.7)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255, 255, 255, 0.05)",
-            }}
-          />
-        </Paper>
-      </Grid>
-      
-      <Grid item xs={12} md={3}>
-        <Paper
-          elevation={0}
-          sx={{
-            position: "relative",
-            overflow: "hidden",
-            "&::before": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: "3px",
-              background: "linear-gradient(90deg, #f59e0b, #fbbf24)",
-            },
-            "&:hover": {
-              transform: "translateY(-4px)",
-              transition: "transform 0.3s ease",
-              boxShadow: "0 10px 25px rgba(245, 158, 11, 0.15)"
-            }
-          }}
-        >
-          <StatCard 
-            title="Recorded Hours" 
-            value="96h"
-            sx={{
-              bgcolor: "rgba(15, 23, 42, 0.7)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255, 255, 255, 0.05)",
-            }}
-          />
-        </Paper>
-      </Grid>
-      
-      <Grid item xs={12} md={3}>
-        <Paper
-          elevation={0}
-          sx={{
-            position: "relative",
-            overflow: "hidden",
-            "&::before": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: "3px",
-              background: "linear-gradient(90deg, #ef4444, #f87171)",
-            },
-            "&:hover": {
-              transform: "translateY(-4px)",
-              transition: "transform 0.3s ease",
-              boxShadow: "0 10px 25px rgba(239, 68, 68, 0.15)"
-            }
-          }}
-        >
-          <StatCard 
-            title="Engagement Avg" 
-            value="78%"
-            sx={{
-              bgcolor: "rgba(15, 23, 42, 0.7)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255, 255, 255, 0.05)",
-            }}
-          />
-        </Paper>
-      </Grid>
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 48,
+                  height: 48,
+                  borderRadius: 2,
+                  bgcolor: stat.bgColor,
+                  color: stat.color,
+                  mr: 2
+                }}
+              >
+                {stat.icon}
+              </Box>
+              <Box>
+                <Typography 
+                  variant="h4" 
+                  fontWeight={700}
+                  sx={{
+                    color: 'text.primary' // This ensures text is visible in both themes
+                  }}
+                >
+                  {stat.value}
+                </Typography>
+                <Typography 
+                  variant="body2" 
+                  sx={{
+                    color: 'text.secondary', // This ensures text is visible in both themes
+                    mt: 0.5
+                  }}
+                >
+                  {stat.title}
+                </Typography>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                height: 4,
+                borderRadius: 2,
+                background: `linear-gradient(90deg, ${stat.color} 0%, ${stat.color}80 100%)`,
+                mt: 1
+              }}
+            />
+          </Card>
+        </Grid>
+      ))}
     </Grid>
   );
-}
+};
+
+export default StatsCards;
